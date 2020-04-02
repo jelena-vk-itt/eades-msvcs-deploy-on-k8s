@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-fesg-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-fesg
+  template:
+    metadata:
+      labels:
+        app: k8s-fesg
+    spec:
+      containers:
+        - name: k8s-fesg
+          image: jelenavk/fesg2
+          ports:
+          - containerPort: 8080	  
+        - name: fesg-redis
+          image: redis
+          ports:
+          - containerPort: 6379
