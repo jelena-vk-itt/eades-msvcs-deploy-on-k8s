@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: wf
-          image: jelenavk/weatherfetcher:v1
+          image: <your docker hub name>/weatherfetcher:v1
