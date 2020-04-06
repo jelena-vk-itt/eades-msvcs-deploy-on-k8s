@@ -1,23 +1,20 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-fesg-deployment
+  name: atn-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: k8s-fesg
+      app: atn
   template:
     metadata:
       labels:
-        app: k8s-fesg
+        app: atn
     spec:
       containers:
-        - name: k8s-fesg
-          image: jelenavk/fesg2
+        - name: atn
+          image: jelenavk/allthenews:v2
+          args: ["news", "http://nf-service:8888", "weather", "http://wf-service:8888"]
           ports:
-          - containerPort: 8080	  
-        - name: fesg-redis
-          image: redis
-          ports:
-          - containerPort: 6379
+          - containerPort: 8080
